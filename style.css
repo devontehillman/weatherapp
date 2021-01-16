@@ -1,0 +1,34 @@
+
+.container{
+    display: flex;
+    
+}
+.container >div {
+    background:#eee;
+    padding: 1em;
+}
+.container > div:nth-child(odd){
+    background: #ddd;
+}
+ .history{
+    order: 1;
+    flex: 1;
+}
+.temp{
+    order: 2;
+    flex:5;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+} 
+
+.temp > div {
+    display: flex;
+    border:#333 1px solid;
+    padding:5em;
+    border-radius: 30px;
+        
+}
+
+
+
