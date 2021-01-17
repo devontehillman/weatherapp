@@ -43,7 +43,7 @@ function composeURL(userString){
 
   // take in url to get lat and lon and returns it as an array
 function dailyWeatherinfo(URL){ // pass in the url 
-    console.log(URL)
+    //console.log(URL)
     var dataToReturn = [];
     
 
@@ -54,24 +54,29 @@ function dailyWeatherinfo(URL){ // pass in the url
     success: function(response){
       dataToReturn[0] = response.city.coord.lat
       dataToReturn[1] = response.city.coord.lon
-      console.log(dataToReturn)
+      //console.log(dataToReturn)
     }
   });
   return dataToReturn;
 };
 
 function Weatherinfo(URL){ // pass in the url 
-  console.log(URL)
+  var weeklyweather = [];
+  var weeklyhumidity= [];
   var dataToReturn = "Error";
 $.ajax({
   url: URL,
   method: "GET",
   async: false,
   success: function(response){
-    //response.main.temp
-    //response.main.humidity
-    console.log(response);
-  }
+    var i  
+    for(i = 0;i < 5; i ++ ){
+    weeklyweather[i] = response.daily[i].temp.eve;
+    weeklyhumidity[i]= response.daily[i].humidity;
+    }
+    dataToReturn = weeklyweather.concat(weeklyhumidity)
+    //console.log(dataToReturn)
+} 
 });
 return dataToReturn;
 };
@@ -84,7 +89,8 @@ return dataToReturn;
      var finalURL = composeURL(userInput)//getsURL
     var myarr = dailyWeatherinfo(finalURL)//gets lat and lon
     var newURl = dailyURL(myarr) //gets URL for daily forecast
-    Weatherinfo(newURl)
+    var weatherHumidity = Weatherinfo(newURl)//pass into ajax now we need to return val
+    console.log(weatherHumidity)
   })
 
 
