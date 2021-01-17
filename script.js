@@ -1,6 +1,6 @@
 const temp = Array.from(document.querySelectorAll('.temp'));
 const humi = Array.from(document.querySelectorAll('.humi'));
-
+const date = Array.from(document.querySelectorAll('.date'));
 
 // api key for weather api 129a08d8024726f96ac0562f98394ae9
 // var city = userInput
@@ -97,13 +97,33 @@ return dataToReturn;
     console.log(weatherHumidity)
     
     var j=5
-for (let i = 0; i < 5; i++) {
-    temp[i].innerHTML = weatherHumidity[i];
-    humi[i].innerHTML = weatherHumidity[j];
-    j++;
-}
+  for (let i = 0; i < 5; i++) {
+      temp[i].innerHTML = weatherHumidity[i];
+      humi[i].innerHTML = weatherHumidity[j];
+      j++;
+  }
+  dayOfWeek()
   })
 
+  function dayOfWeek() {
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+  
+    
+    
+    var start = d.getDay()
+    for (let i = 0; i < 5; i++) {
+    date[i].innerHTML = weekday[start];
+    start++;
+  }
+  }
 
 
   // $.ajax({
