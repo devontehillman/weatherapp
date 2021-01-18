@@ -1,6 +1,7 @@
 const temp = Array.from(document.querySelectorAll('.temp'));
 const humi = Array.from(document.querySelectorAll('.humi'));
 const date = Array.from(document.querySelectorAll('.date'));
+const weatherIcon = Array.from(document.querySelectorAll('.weatherIcon'));
 
 // api key for weather api 129a08d8024726f96ac0562f98394ae9
 // var city = userInput
@@ -75,16 +76,19 @@ $.ajax({
   success: function(response){
     var i  
     for(i = 0;i < 5; i ++ ){
-    weeklyweather[i] = response.daily[i].temp.eve;
-    weeklyhumidity[i]= response.daily[i].humidity;
+    weeklyweather[i] = response.daily[i].temp.eve;//Stores Weather 
+    weeklyhumidity[i]= response.daily[i].humidity;//Stores humidity
+    var iconID =  response.daily[i].weather[0].icon;
+    weatherIcon[i].src = "http://openweathermap.org/img/wn/" + iconID + "@2x.png" //updates weather ICON
     }
     dataToReturn = weeklyweather.concat(weeklyhumidity)
-    //console.log(dataToReturn)
+    console.log(dataToReturn)
 } 
 });
 return dataToReturn;
 };
 
+ 
   $("#btn").click(function(){
     event.preventDefault();
     let userInput = $(".userCity").val()
@@ -94,7 +98,7 @@ return dataToReturn;
     var myarr = dailyWeatherinfo(finalURL)//gets lat and lon
     var newURl = dailyURL(myarr) //gets URL for daily forecast
     var weatherHumidity = Weatherinfo(newURl)//pass into ajax now we need to return val
-    console.log(weatherHumidity)
+    //console.log(weatherHumidity)
     
     var j=5
   for (let i = 0; i < 5; i++) {
