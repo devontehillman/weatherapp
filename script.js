@@ -87,8 +87,9 @@ $.ajax({
 });
 return dataToReturn;
 };
+  
+defaultCity()
 
- 
   $("#btn").click(function(){
     event.preventDefault();
     let userInput = $(".userCity").val()
@@ -129,6 +130,24 @@ return dataToReturn;
   }
   }
 
+//sets initial city 
+  function defaultCity(){
+    var defaultCity = "Paris"
+    $('.mycity').text(defaultCity)
+    var finalURL = composeURL(defaultCity)//getsURL
+    var myarr = dailyWeatherinfo(finalURL)//gets lat and lon
+    var newURl = dailyURL(myarr) //gets URL for daily forecast
+    var weatherHumidity = Weatherinfo(newURl)//pass into ajax now we need to return val
+    //console.log(weatherHumidity)
+    
+    var j=5
+    for (let i = 0; i < 5; i++) {
+      temp[i].innerHTML = weatherHumidity[i];
+      humi[i].innerHTML = weatherHumidity[j];
+      j++;
+    }
+    dayOfWeek()
+     }
 
   // $.ajax({
   //   url: queryURL,
