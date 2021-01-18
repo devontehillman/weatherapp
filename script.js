@@ -142,8 +142,8 @@ defaultCity()
     
     var j=5
     for (let i = 0; i < 5; i++) {
-      temp[i].innerHTML = weatherHumidity[i];
-      humi[i].innerHTML = weatherHumidity[j];
+      temp[i].innerHTML = "Temp: " + weatherHumidity[i];
+      humi[i].innerHTML = "Humidity: " + weatherHumidity[j];
       j++;
     }
     dayOfWeek()
